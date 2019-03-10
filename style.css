@@ -3,3 +3,6 @@ table, th, tr, td {
     width: 800px;
     border-collapse: collapse;
 }
+tfoot {
+    border: none;
+}
