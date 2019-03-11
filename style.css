@@ -6,3 +6,7 @@ table, th, tr, td {
 tfoot {
     border: none;
 }
+
+.red {
+    color: red;
+}

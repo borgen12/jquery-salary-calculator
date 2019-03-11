@@ -1,14 +1,18 @@
 console.log('gret');
 
 $(document).ready(readyNow);
+//array for holding new objects (employees)
 let employeeList = [];
+//array for holding monthly salaries
 let monthSalaries = [];
 
 function readyNow() {
+    //add input fields on click
     $('.submitButton').on('click', addEmployee);
 }
 
 function addEmployee () {
+    //create object to store values from inputfields
     let newEmployee = {
         firstName: $('#fNameInput').val(),
         lastName: $('#lNameInput').val(),
@@ -16,49 +20,57 @@ function addEmployee () {
         title: $('#titleInput').val(),
         annualSalary: $('#salaryInput').val(),
     }
-    $('#fNameInput, #lNameInput, #idInput, #titleInput, #salaryInput').val('');
     //clear input fields
+    $('#fNameInput, #lNameInput, #idInput, #titleInput, #salaryInput').val('');
+    //store object values in array
     employeeList.push(newEmployee);
+    //create variable to store monthly salaries in array
     let monthSalary = (newEmployee.annualSalary)/12;
+    //store monthly salaries in different array
     monthSalaries.push(monthSalary);
     console.log('monthSalaries', monthSalaries);
-    
-
-    console.log('newEmployee:', employeeList);
     logEmployee();
 } 
 
 function logEmployee() {
     console.log('in logEmployee');
+    //empty array of last entered value
     let clear = $('.emTable');
     clear.empty();
-    //empty array of last entered value
+    //loop through object array to grab values and list in table, create delete button
     for( let employee of employeeList) {
         $('.emTable').append(`<tr><td>${employee.firstName}</td><td>${employee.lastName}
-        </td><td>${employee.id}</td><td>${employee.title}</td><td>${employee.annualSalary}</td></tr>`);
+        </td><td>${employee.id}</td><td>${employee.title}</td><td>${employee.annualSalary}</td>
+        <td><button id="deleteButton">Delete</button></td></tr>`);
     }
     monthLog();
+    deleteButton();
 }
 
 function monthLog() {
     console.log('in monthLog');
-    let clearMonth = $('emTable');
-    clearMonth.empty();
-    let sum = monthSalaries.reduce(function (a, b) { return a + b; }, 0);
-    for( let employee of employeeList) {
-        $('.emFoot').append('<h2>' + sum + '</h2>');
+    //empty the last value entered
+    $('.emFoot').empty();
+    //add up all the values in array
+    let sum = monthSalaries.reduce(function (a, b) { return a + b; });
+    console.log(sum);
+    //display array sum in DOM
+    $('.emFoot').append(`<h3>$${sum}</h3>`);
+    //change text to red if sum exceeds $20,000
+    if ((sum) > 20, 000) {
+        //$('.emFoot').addClass('red');
+        $('.emFoot').append('<h3 class=".red"></h3>');
+
     }
 }
 
-function sumMonth() {
-    let sum = monthSalaries.reduce(function (a, b) { return a + b; }, 0);
-    return sum;
-
-    /* let sum = 0;
-    for (let i=0; i<monthSalaries.length; i++){
-        console.log(monthSalaries[i]);
-
-        return sum += monthSalaries[i]; */
-console.log(sumMonth);
- 
+function deleteButton () {
+    
+    $("#deleteButton").on('click', removeRow);
+    console.log('click');
+    
+}
+function removeRow() {
+    $(this).parent().parent().remove();
+    console.log('but');
 }
