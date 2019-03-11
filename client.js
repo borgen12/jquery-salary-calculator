@@ -41,7 +41,7 @@ function logEmployee() {
     for( let employee of employeeList) {
         $('.emTable').append(`<tr><td>${employee.firstName}</td><td>${employee.lastName}
         </td><td>${employee.id}</td><td>${employee.title}</td><td>${employee.annualSalary}</td>
-        <td><button id="deleteButton">Delete</button></td></tr>`);
+        <td><button class="deleteButton">Delete</button></td></tr>`);
     }
     monthLog();
     deleteButton();
@@ -57,20 +57,30 @@ function monthLog() {
     //display array sum in DOM
     $('.emFoot').append(`<h3>$${sum}</h3>`);
     //change text to red if sum exceeds $20,000
-    if ((sum) > 20, 000) {
+    if ((sum) >= 20000) {
         //$('.emFoot').addClass('red');
-        $('.emFoot').append('<h3 class=".red"></h3>');
+        $('.emFoot').append('<h3 class="red"></h3>');
 
     }
 }
 
 function deleteButton () {
     
-    $("#deleteButton").on('click', removeRow);
+    $('.deleteButton').on('click', removeRow);
     console.log('click');
     
 }
 function removeRow() {
     $(this).parent().parent().remove();
     console.log('but');
+    spliceData();
 }
+
+function spliceData() {
+    
+}
+//there is a bug where after deleting an item and then adding a new item,
+//the new item will then call beck the deleted item because it is still
+//in the monthSalaries array
+//once delete button is pressed I need it to also splice the data out of 
+//the array. once I can do that, the stretch goal will also be complete
