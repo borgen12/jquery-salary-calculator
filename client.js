@@ -65,21 +65,23 @@ function monthLog() {
 } 
 
 function deleteButton () {
-    
+    //activate a delete button
     $('.deleteButton').on('click', removeRow);
     console.log('click');
     
 }
 function removeRow() {
+    //remove both parent elements of the button, deleting the row
     $(this).parent().parent().remove();
     console.log('but');
+    //create variable to relate button to employee data within the same object
     let employeeData = $(this).parent().parent().data();
     console.log('in remove employee this', employeeData);
-    
+    //loop through array to remove the object related to the button
     for(let i=0; i<employeeList.length; i++) {
         let employee = employeeList[i];
-        if( employee.name === employeeData.name) {
-            employeeList.splice(i,0);
+        if( employee.fName === employeeData.fName) {
+            employeeList.splice(i,1);
         }
     }
 }
@@ -87,8 +89,6 @@ function removeRow() {
 function spliceData() {
 
 }
-//there is a bug where after deleting an item and then adding a new item,
-//the new item will then call beck the deleted item because it is still
-//in the employeeList and monthSalaries arrays
+
 //once delete button is pressed I need it to also splice the data out of 
-//both arrays. once I can do that, the stretch goal will also be complete
+//monthSalaries. 
