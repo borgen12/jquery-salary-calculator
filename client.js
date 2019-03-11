@@ -24,7 +24,7 @@ function addEmployee () {
     $('#fNameInput, #lNameInput, #idInput, #titleInput, #salaryInput').val('');
     //store object values in array
     employeeList.push(newEmployee);
-    //create variable to store monthly salaries in array
+    //create variable for calculating monthly salaries
     let monthSalary = (newEmployee.annualSalary)/12;
     //store monthly salaries in different array
     monthSalaries.push(monthSalary);
@@ -77,7 +77,7 @@ function removeRow() {
 }
 
 function spliceData() {
-    
+
 }
 //there is a bug where after deleting an item and then adding a new item,
 //the new item will then call beck the deleted item because it is still
