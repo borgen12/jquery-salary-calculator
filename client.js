@@ -73,6 +73,7 @@ function deleteButton () {
 function removeRow() {
     $(this).parent().parent().remove();
     console.log('but');
+
     spliceData();
 }
 
@@ -81,6 +82,6 @@ function spliceData() {
 }
 //there is a bug where after deleting an item and then adding a new item,
 //the new item will then call beck the deleted item because it is still
-//in the monthSalaries array
+//in the employeeList and monthSalaries arrays
 //once delete button is pressed I need it to also splice the data out of 
-//the array. once I can do that, the stretch goal will also be complete
+//both arrays. once I can do that, the stretch goal will also be complete
