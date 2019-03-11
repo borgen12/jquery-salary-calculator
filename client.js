@@ -59,10 +59,10 @@ function monthLog() {
     //change text to red if sum exceeds $20,000
     if ((sum) >= 20000) {
         //$('.emFoot').addClass('red');
-        $('.emFoot').append('<h3 class="red"></h3>');
+        $('.emFoot').css('color', 'red');
 
     }
-}
+} 
 
 function deleteButton () {
     
@@ -73,8 +73,15 @@ function deleteButton () {
 function removeRow() {
     $(this).parent().parent().remove();
     console.log('but');
-
-    spliceData();
+    let employeeData = $(this).parent().parent().data();
+    console.log('in remove employee this', employeeData);
+    
+    for(let i=0; i<employeeList.length; i++) {
+        let employee = employeeList[i];
+        if( employee.name === employeeData.name) {
+            employeeList.splice(i,0);
+        }
+    }
 }
 
 function spliceData() {
